@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENIGMA 47 - Joyería Artesanal de Lujo Consciente</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --blanco-hueso: #f2eee9;
+            --beige-arena: #e7e2d6;
+            --marron-terracota: #b19173;
+            --gris-topo: #bbaa94;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none;
+        }
+
+        /* Cursor personalizado */
+        .cursor {
+            width: 8px;
+            height: 8px;
+            background-color: var(--negro);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+            mix-blend-mode: difference;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--negro);
+            line-height: 1.8;
+            overflow-x: hidden;
+            background: var(--blanco-hueso);
+        }
+
+        /* Tipografías */
+        h1, h2, .serif {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scrollIndicator {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(10px);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes lineGrow {
+            from {
+                width: 0;
+            }
+            to {
+                width: 60px;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        /* SECCIÓN 1: HERO */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(180deg, var(--blanco-hueso) 0%, var(--beige-arena) 100%);
+            position: relative;
+        }
+
+        .logo {
+            font-size: clamp(2rem, 5vw, 3rem);
+            letter-spacing: 0.3em;
+            font-weight: 200;
+            animation-delay: 0.2s;
+        }
+
+        .decorative-line {
+            width: 60px;
+            height: 1px;
+            background: var(--negro);
+            margin: 2rem 0;
+            opacity: 0;
+            animation: lineGrow 1s ease 0.6s forwards;
+        }
+
+        .tagline {
+            font-style: italic;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            opacity: 0.8;
+            animation-delay: 0.8s;
+            margin-bottom: 3rem;
+        }
+
+        .btn-ghost {
+            padding: 12px 40px;
+            border: 1px solid var(--negro);
+            background: transparent;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            animation-delay: 1s;
+        }
+
+        .btn-ghost:hover {
+            background: var(--negro);
+            color: var(--blanco-hueso);
+            transform: translateY(-2px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            width: 1px;
+            height: 40px;
+            background: var(--negro);
+            animation: scrollIndicator 2s ease infinite;
+        }
+
+        /* SECCIÓN 2: STATEMENT */
+        .statement {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: var(--blanco-hueso);
+        }
+
+        .statement-text {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            text-align: center;
+            max-width: 900px;
+            line-height: 1.6;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .statement-text.visible {
+            opacity: 1;
+        }
+
+        /* SECCIÓN 3: TRÍPTICO */
+        .triptych {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .triptych-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .triptych-item {
+            text-align: center;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .triptych-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .triptych-item:nth-child(1).visible { transition-delay: 0.1s; }
+        .triptych-item:nth-child(2).visible { transition-delay: 0.2s; }
+        .triptych-item:nth-child(3).visible { transition-delay: 0.3s; }
+
+        .triptych-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .geometric-shape {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            opacity: 0.8;
+        }
+
+        .circle {
+            background: var(--gris-topo);
+            border-radius: 50%;
+        }
+
+        .square {
+            background: var(--marron-terracota);
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 70px solid var(--beige-arena);
+        }
+
+        .triptych-title {
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .triptych-desc {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            opacity: 0.7;
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        /* SECCIÓN 4: ESENCIA */
+        .essence {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, 
+                rgba(177, 145, 115, 0.05) 0%, 
+                transparent 100%);
+        }
+
+        .mission-text {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            text-align: center;
+            max-width: 800px;
+            line-height: 2;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .mission-text.visible {
+            opacity: 1;
+        }
+
+        /* SECCIÓN 5: ENIGMA */
+        .enigma {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--negro);
+            position: relative;
+            padding: 4rem 2rem;
+        }
+
+        .enigma-number {
+            position: absolute;
+            font-size: 20rem;
+            font-weight: 100;
+            color: var(--blanco-hueso);
+            opacity: 0.1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .enigma-text {
+            color: var(--blanco-hueso);
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            line-height: 1.8;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .enigma-text.visible {
+            opacity: 1;
+        }
+
+        /* SECCIÓN 6: CONEXIÓN */
+        .connection {
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--beige-arena);
+            padding: 4rem 2rem;
+        }
+
+        .connection-title {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 3rem;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .connection-title.visible {
+            opacity: 1;
+        }
+
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            opacity: 0;
+            transition: opacity 0.8s ease 0.2s;
+        }
+
+        .email-form.visible {
+            opacity: 1;
+        }
+
+        .email-input {
+            width: 300px;
+            padding: 12px 0;
+            border: none;
+            border-bottom: 1px solid var(--negro);
+            background: transparent;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .email-input::placeholder {
+            color: rgba(0,0,0,0.4);
+        }
+
+        .email-input:focus {
+            border-bottom-color: var(--marron-terracota);
+        }
+
+        .btn-text {
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 10px 20px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .btn-text::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--negro);
+            transition: width 0.3s ease;
+        }
+
+        .btn-text:hover::after {
+            width: 100%;
+        }
+
+        /* SECCIÓN 7: CIERRE */
+        .footer {
+            min-height: 30vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--blanco-hueso);
+            padding: 3rem 2rem;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.2rem;
+            letter-spacing: 0.2em;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .footer-link {
+            text-decoration: none;
+            color: var(--negro);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            position: relative;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--negro);
+            transition: width 0.3s ease;
+        }
+
+        .footer-link:hover::after {
+            width: 100%;
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .triptych-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .enigma-number {
+                font-size: 10rem;
+            }
+
+            .footer-links {
+                gap: 2rem;
+            }
+
+            .email-input {
+                width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cursor personalizado -->
+    <div class="cursor"></div>
+
+    <!-- SECCIÓN 1: HERO -->
+    <section class="hero">
+        <h1 class="logo fade-in">ENIGMA 47</h1>
+        <div class="decorative-line"></div>
+        <p class="tagline fade-in">Donde cada joya cuenta una historia</p>
+        <button class="btn-ghost fade-in" onclick="document.querySelector('.statement').scrollIntoView({behavior: 'smooth'})">
+            Descubrir
+        </button>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- SECCIÓN 2: STATEMENT -->
+    <section class="statement">
+        <h2 class="statement-text serif">
+            Creamos joyas artesanales excepcionales<br>
+            que reflejan tu esencia auténtica y<br>
+            trascienden generaciones
+        </h2>
+    </section>
+
+    <!-- SECCIÓN 3: TRÍPTICO -->
+    <section class="triptych">
+        <div class="triptych-grid">
+            <div class="triptych-item">
+                <div class="geometric-shape circle"></div>
+                <h3 class="triptych-title">AUTENTICIDAD</h3>
+                <p class="triptych-desc">
+                    Cada pieza refleja tu verdadera esencia,<br>
+                    única e irrepetible
+                </p>
+            </div>
+            <div class="triptych-item">
+                <div class="geometric-shape square"></div>
+                <h3 class="triptych-title">LEGADO</h3>
+                <p class="triptych-desc">
+                    Joyas que trascienden el tiempo,<br>
+                    creando historias eternas
+                </p>
+            </div>
+            <div class="triptych-item">
+                <div class="geometric-shape triangle"></div>
+                <h3 class="triptych-title">CONSCIENCIA</h3>
+                <p class="triptych-desc">
+                    Lujo sostenible que honra<br>
+                    la artesanía y el planeta
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN 4: NUESTRA ESENCIA -->
+    <section class="essence">
+        <p class="mission-text serif">
+            Conectamos a las personas con joyas artesanales<br>
+            excepcionales que reflejan su esencia auténtica,<br>
+            curando una selección única que transforma<br>
+            momentos especiales en legados tangibles<br>
+            que trascienden generaciones.
+        </p>
+    </section>
+
+    <!-- SECCIÓN 5: EL ENIGMA -->
+    <section class="enigma">
+        <div class="enigma-number">47</div>
+        <p class="enigma-text serif">
+            Cada número tiene su historia.<br>
+            Cada pieza, su enigma.
+        </p>
+    </section>
+
+    <!-- SECCIÓN 6: CONEXIÓN -->
+    <section class="connection">
+        <h2 class="connection-title serif">Sé parte de historias extraordinarias</h2>
+        <form class="email-form" onsubmit="event.preventDefault()">
+            <input type="email" class="email-input" placeholder="Tu email" required>
+            <button type="submit" class="btn-text">Unirse al círculo</button>
+        </form>
+    </section>
+
+    <!-- SECCIÓN 7: CIERRE -->
+    <footer class="footer">
+        <div class="footer-logo">ENIGMA 47</div>
+        <nav class="footer-links">
+            <a href="#" class="footer-link">Instagram</a>
+            <a href="#" class="footer-link">Contacto</a>
+            <a href="#" class="footer-link">Citas</a>
+        </nav>
+        <p class="copyright">© 2024 ENIGMA 47. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // Cursor personalizado
+        const cursor = document.querySelector('.cursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.1;
+            cursorY += (mouseY - cursorY) * 0.1;
+            
+            cursor.style.left = cursorX - 4 + 'px';
+            cursor.style.top = cursorY - 4 + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Hover effect en elementos interactivos
+        const interactiveElements = document.querySelectorAll('button, a, input');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+            });
+        });
+
+        // Animaciones on scroll
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observar elementos para animación
+        document.querySelectorAll('.statement-text, .mission-text, .enigma-text, .connection-title, .email-form').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Observar items del tríptico
+        document.querySelectorAll('.triptych-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll para todos los enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Parallax suave en el hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
