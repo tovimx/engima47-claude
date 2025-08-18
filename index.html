@@ -142,12 +142,17 @@
         padding: 12px 40px;
         border: 1px solid var(--negro);
         background: transparent;
+        color: var(--negro);
         font-size: 0.9rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         transition: all 0.3s ease;
         animation-delay: 1s;
         cursor: pointer;
+        text-decoration: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
       }
 
       .btn-ghost:hover {
@@ -303,12 +308,51 @@
       }
 
       .mission-text {
-        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
         text-align: center;
-        max-width: 800px;
-        line-height: 2;
+        max-width: 700px;
+        line-height: 1.8;
         opacity: 0;
         transition: opacity 1s ease;
+        font-weight: 300;
+        letter-spacing: 0.08em;
+        padding: 0 1rem;
+        text-transform: uppercase;
+        word-spacing: 0.3em;
+        color: var(--negro);
+        position: relative;
+      }
+
+      .mission-text::before {
+        content: "";
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--marron-terracota) 50%,
+          transparent 100%
+        );
+      }
+
+      .mission-text::after {
+        content: "";
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--gris-topo) 50%,
+          transparent 100%
+        );
       }
 
       .mission-text.visible {
@@ -540,6 +584,30 @@
           gap: 3rem;
         }
 
+        .essence {
+          min-height: 50vh;
+          padding: 3rem 1.5rem;
+        }
+
+        .mission-text {
+          font-size: clamp(0.9rem, 4.2vw, 1.2rem);
+          line-height: 1.7;
+          max-width: 340px;
+          padding: 0;
+          letter-spacing: 0.06em;
+          word-spacing: 0.2em;
+        }
+
+        .mission-text::before {
+          width: 60px;
+          top: -25px;
+        }
+
+        .mission-text::after {
+          width: 40px;
+          bottom: -25px;
+        }
+
         .enigma-number {
           width: clamp(250px, 70vw, 500px);
         }
@@ -559,6 +627,31 @@
 
         .footer-left {
           align-items: center;
+        }
+      }
+
+      /* Extra small screens */
+      @media (max-width: 480px) {
+        .essence {
+          padding: 2.5rem 1rem;
+        }
+
+        .mission-text {
+          font-size: 0.95rem;
+          line-height: 1.6;
+          max-width: 300px;
+          letter-spacing: 0.05em;
+          word-spacing: 0.15em;
+        }
+
+        .mission-text::before {
+          width: 50px;
+          top: -20px;
+        }
+
+        .mission-text::after {
+          width: 35px;
+          bottom: -20px;
         }
       }
     </style>
@@ -623,10 +716,12 @@
     <!-- SECCIÓN 4: NUESTRA ESENCIA -->
     <section class="essence">
       <p class="mission-text serif">
-        Conectamos a las personas con joyas artesanales<br />
-        excepcionales que reflejan su esencia auténtica,<br />
-        curando una selección única que transforma<br />
-        momentos especiales en legados tangibles<br />
+        Conectamos a las personas<br />
+        con joyas artesanales excepcionales<br />
+        que reflejan su esencia auténtica,<br />
+        curando una selección única<br />
+        que transforma momentos especiales<br />
+        en legados tangibles<br />
         que trascienden generaciones.
       </p>
     </section>
