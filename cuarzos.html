@@ -1167,14 +1167,22 @@
       const noResults = document.getElementById('noResults');
       const cards = document.querySelectorAll('.card');
 
+      // Function to normalize text by removing accents
+      function normalizeText(text) {
+        return text
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+      }
+
       searchInput.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase().trim();
+        const searchTerm = normalizeText(e.target.value.trim());
         let visibleCount = 0;
 
         cards.forEach(card => {
-          const name = card.dataset.name.toLowerCase();
-          const keywords = card.dataset.keywords.toLowerCase();
-          const cardText = card.textContent.toLowerCase();
+          const name = normalizeText(card.dataset.name);
+          const keywords = normalizeText(card.dataset.keywords);
+          const cardText = normalizeText(card.textContent);
 
           if (name.includes(searchTerm) || keywords.includes(searchTerm) || cardText.includes(searchTerm)) {
             card.style.display = 'block';
